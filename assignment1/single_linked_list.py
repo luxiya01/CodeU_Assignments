@@ -13,6 +13,7 @@ class SingleLinkedList(object):
 
     def __init__(self, head=None):
         self.head = head
+        self.size = 0
 
     def append(self, data):
         """Append a new node containing data 
@@ -28,6 +29,7 @@ class SingleLinkedList(object):
             while curr.next != None:
                 curr = curr.next
             curr.next = new_node
+        self.size += 1
 
     def remove(self, data):
         """ If a node with the specified data exists in 
@@ -41,6 +43,7 @@ class SingleLinkedList(object):
         curr = self.head
         while curr != None:
             if curr.data == data:
+                self.size -= 1
                 if curr == self.head:
                     self.head = curr.next
                 else:
