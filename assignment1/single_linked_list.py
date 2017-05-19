@@ -66,12 +66,6 @@ class SingleLinkedList(object):
         assumes zero indexing. """
         return self.get_node_from_index(index).data 
         
-    def get_list_from_index(self, index):
-        """Returns a new linked list with the node at the 
-        desired index as head. """
-        head = self.get_node_from_index(index)
-        return SingleLinkedList(head)
-
     def print(self):
         curr = self.head
         linked_list = []
