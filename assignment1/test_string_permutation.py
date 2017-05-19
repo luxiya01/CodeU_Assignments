@@ -7,6 +7,9 @@ class TestStringPermutations(unittest.TestCase):
         self.apple2 = "apple"
         self.apple3 = "papel"
         self.empty = ""
+        self.invalid1 = "apple123"
+        self.invalid2 = "(^V^)"
+        self.invalid3 = "^)V(^"
 
     def test_string_pmt_success(self):
         self.assertTrue(pmt.string_permutation(self.apple2, self.apple2))
@@ -18,6 +21,13 @@ class TestStringPermutations(unittest.TestCase):
         self.assertTrue(pmt.string_permutation(self.empty, self.empty))
         self.assertFalse(pmt.string_permutation(self.empty, self.apple2))
 
+    def test_string_invalid_input(self):
+        with self.assertRaises(ValueError):
+            pmt.string_permutation(self.invalid2, self.invalid3)
+            pmt.string_permutation(self.apple1, self.invalid1)
+            pmt.string_permutation(self.empty, self.invalid3)
+
+
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
 
