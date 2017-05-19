@@ -65,6 +65,14 @@ class SingleLinkedList(object):
         """Returns the data of the node at the valid index, 
         assumes zero indexing. """
         return self.get_node_from_index(index).data 
+
+    def get_kth_from_last(self, backward_index):
+        """Returns the data of a node. When counting from 
+        the last element in the linked list backwards, the 
+        node whose value is returned has index equal to 
+        backward_index."""
+        index = self.size - backward_index - 1
+        return self.get_index(index)
         
     def print(self):
         curr = self.head
