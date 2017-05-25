@@ -8,3 +8,11 @@ class Node(object):
         self.left = None
         self.right = None
 
+class BinaryTree(object):
+    """Defines a binary tree. (NOT binary search tree). 
+
+    Attributes:
+        root: the node root of the binary tree.  """
+
+    def __init__(self, key):
+        self.root = Node(key)
