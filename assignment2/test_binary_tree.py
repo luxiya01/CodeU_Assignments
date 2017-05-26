@@ -19,13 +19,13 @@ class TestBinaryTree(unittest.TestCase):
         whether the data is actually stored in the tree after 
         the insertion. """
         self.assertFalse(self.tree.contains(1))
-        self.assertTrue(self.tree.insert(1, branch="left"))
+        self.assertTrue(0, self.tree.insert(1))
         self.assertTrue(self.tree.contains(1))
 
     def test_insert_right(self):
         """Same test as above but for insertion of a right node."""
         self.assertFalse(self.tree.contains(2))
-        self.assertTrue(self.tree.insert(2, branch="right"))
+        self.assertTrue(0, self.tree.insert(2, left=False))
         self.assertTrue(self.tree.contains(2))
 
 if __name__ == "__main__":
