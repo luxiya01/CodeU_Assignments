@@ -28,5 +28,15 @@ class TestBinaryTree(unittest.TestCase):
         self.assertTrue(0, self.tree.insert(2, left=False))
         self.assertTrue(self.tree.contains(2))
 
+    def test_insert_duplicate(self):
+        """The tree rejects duplicated keys. """
+        with self.assertRaises(ValueError):
+            self.tree.insert(0, self.tree.insert(0))
+
+    def test_insert_nonexistent_parent(self):
+        with self.assertRaises(ValueError):
+            self.tree.insert(100, self.tree.insert(9))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
