@@ -35,7 +35,12 @@ class BinaryTree(object):
 
     def insert(self, parent_key, key, left=True):
         """If left = True, then the node will be inserted to the left 
-        of the parent node. """
+        of the parent node. 
+        
+        If the parent already has a child at the desired direction, 
+        then that child node will be replaced by a new node with 
+        both left and right = None.
+        """
         if not self.contains(parent_key):
             raise ValueError("The desired parent key does not exist.")
         if self.contains(key):
@@ -58,3 +63,29 @@ class BinaryTree(object):
             rnode = self.insert_helper(node.right, parent_key, key, left)
         return lnode or rnode
 
+    def get_ancestors(self, key):
+        if not self.contains(key):
+            raise ValueError("The given key does not exist!")
+        ancestor_nodes,_ = self.get_ancestors_helper([self.root], key)
+        ancestors = [node.key for node in ancestor_nodes]
+        ancestors.reverse()
+        return ancestors
+
+    def get_ancestors_helper(self, nodelst, key):
+        """Preorder traversal. 
+        Returns a list of ancestor nodes. """
+        curr = nodelst.pop()
+        if curr.key == key: 
+            return nodelst, True
+        nodelst.append(curr)
+        if curr.left: 
+            nodelst.append(curr.left)
+            leftlst, leftfound = self.get_ancestors_helper(nodelst, key)
+            if leftfound:
+                return leftlst, leftfound
+        if curr.right: 
+            nodelst.append(curr.right)
+            rightlst, rightfound = self.get_ancestors_helper(nodelst, key)
+            if rightfound: 
+                return rightlst, rightfound
+        return nodelst.pop(), False
