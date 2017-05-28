@@ -89,3 +89,13 @@ class BinaryTree(object):
             if rightfound: 
                 return rightlst, rightfound
         return nodelst.pop(), False
+
+    def get_common_ancestor(self, key1, key2):
+        """Note that a node is NOT considered ancestor of itself. 
+        This is to be consistent with Q1. """
+        ancestors_node1 = self.get_ancestors(key1)
+        ancestors_node2 = self.get_ancestors(key2)
+        index = abs(len(ancestors_node1)-len(ancestors_node2))
+        if len(ancestors_node1) < len(ancestors_node2):
+            return ancestors_node2[index]
+        return ancestors_node1[index]
