@@ -18,7 +18,8 @@ class TestAncestors(unittest.TestCase):
         self.tree.insert(3, 5, left=False)
 
     def test_ancestors_root_node(self):
-        self.assertListEqual([0], self.tree.get_ancestors(0))
+        """Root note shall not have ancestors"""
+        self.assertListEqual([], self.tree.get_ancestors(16))
         
     def test_ancestors_nonexistent_node(self):
         with self.assertRaises(ValueError):
@@ -26,7 +27,7 @@ class TestAncestors(unittest.TestCase):
 
     def test_ancestors_non_root_node(self):
         """This is the example provided in Q1 in assignment2. """
-        self.assertListEqual([3,9,16], self.get_ancestors(5))
+        self.assertListEqual([3,9,16], self.tree.get_ancestors(5))
 
     def test_common_ancestor_nonexistent_node(self):
         with self.assertRaises(ValueError):
@@ -38,7 +39,7 @@ class TestAncestors(unittest.TestCase):
 
     def test_common_ancestor_special(self):
         """One of the nodes is the parent of the other. """
-        self.assertEqual(3, self.tree.get_common_ancestor(3, 5))
+        self.assertEqual(9, self.tree.get_common_ancestor(3, 5))
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
