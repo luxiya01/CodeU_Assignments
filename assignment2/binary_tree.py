@@ -92,9 +92,13 @@ class BinaryTree(object):
 
     def get_common_ancestor(self, key1, key2):
         """Note that a node is NOT considered ancestor of itself. 
-        This is to be consistent with Q1. """
+        This is to be consistent with Q1. 
+        If one of the keys given is that of the root, 
+        common ancestor will be None. """
         ancestors_node1 = self.get_ancestors(key1)
         ancestors_node2 = self.get_ancestors(key2)
+        if len(ancestors_node1)== 0 or len(ancestors_node2)==0:
+            return None
         index = abs(len(ancestors_node1)-len(ancestors_node2))
         if len(ancestors_node1) < len(ancestors_node2):
             return ancestors_node2[index]

@@ -41,5 +41,9 @@ class TestAncestors(unittest.TestCase):
         """One of the nodes is the parent of the other. """
         self.assertEqual(9, self.tree.get_common_ancestor(3, 5))
 
+    def test_common_ancestor_root(self):
+        """Root node has no ancestor. """
+        self.assertIsNone(self.tree.get_common_ancestor(16, 5))
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
