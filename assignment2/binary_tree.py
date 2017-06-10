@@ -19,6 +19,8 @@ class BinaryTree(object):
         self.root = Node(key)
 
     def contains(self, key):
+        """Worst case time complexity: O(n) 
+        where n = number of nodes in the tree. """
         return self.contains_helper(self.root, key)
 
     def contains_helper(self, node, key):
@@ -29,7 +31,7 @@ class BinaryTree(object):
         rnode = False
         if node.left:
             lnode = self.contains_helper(node.left, key)
-        if node.right: 
+        if not lnode and node.right: 
             rnode = self.contains_helper(node.right, key)
         return lnode or rnode
 
@@ -40,6 +42,10 @@ class BinaryTree(object):
         If the parent already has a child at the desired direction, 
         then that child node will be replaced by a new node with 
         both left and right = None.
+
+        Worst case time complexity: O(n) where n = number of nodes in the tree
+        (O(n) for self.contains(parent_key) + O(n) for self.contains(key) 
+        + O(n) for self.insert_helper = O(3n) = O(n))
         """
         if not self.contains(parent_key):
             raise ValueError("The desired parent key does not exist.")
@@ -59,7 +65,7 @@ class BinaryTree(object):
         rnode = False
         if node.left: 
             lnode = self.insert_helper(node.left, parent_key, key, left)
-        if node.right: 
+        if not lnode and node.right: 
             rnode = self.insert_helper(node.right, parent_key, key, left)
         return lnode or rnode
 
