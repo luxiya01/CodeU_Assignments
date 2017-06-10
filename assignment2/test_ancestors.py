@@ -37,6 +37,9 @@ class TestAncestors(unittest.TestCase):
         """This is the example provided in Q2 in assignment2. """
         self.assertEqual(9, self.tree.get_common_ancestor(5, 14))
 
+    def test_common_ancestor_normal2(self):
+        self.assertEqual(16, self.tree.get_common_ancestor(1, 9))
+
     def test_common_ancestor_special(self):
         """One of the nodes is the parent of the other. """
         self.assertEqual(9, self.tree.get_common_ancestor(3, 5))
