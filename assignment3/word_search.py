@@ -67,7 +67,7 @@ def checkLeftRight(i, j, curr, visited):
         Nothing. Note that ALL_WORDS is modified on the go. 
     """
     if j > 0:
-        newCurr = curr + CHAR_2D_ARRAY[i-1][j-1]
+        newCurr = curr + CHAR_2D_ARRAY[i][j-1]
         checkCell(i, j-1, newCurr, visited)
     if j < len(CHAR_2D_ARRAY[i]) - 1:
         newCurr = curr + CHAR_2D_ARRAY[i][j+1]

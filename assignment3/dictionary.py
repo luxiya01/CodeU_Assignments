@@ -30,10 +30,6 @@ class Dictionary(object):
         """
         prefixSet = set()
         for word in wordSet:
-           currentPrefix = []
-           for letter in word: 
-               currentPrefix.append(letter)
-               prefixSet.add(''.join(currentPrefix))
+            tmp = set([word[0:n] for n in range(1, len(word)+1)])
+            prefixSet.update(tmp)
         return prefixSet
-
-
