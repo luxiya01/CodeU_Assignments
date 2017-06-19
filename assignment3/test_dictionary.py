@@ -10,14 +10,10 @@ class TestDictionary(unittest.TestCase):
         self.testDict = dictionary.Dictionary(self.wordList)
 
     def testWordSetConstruction(self):
-        self.assertEqual(4, len(self.testDict.wordSet)) 
-        for word in self.wordList:
-            self.assertTrue(word in self.testDict.wordSet)
+        self.assertCountEqual(set(self.wordList), self.testDict.wordSet)
 
     def testPrefixSetConstruction(self):
-        self.assertEqual(len(self.prefixSet), len(self.testDict.prefixSet))
-        for prefix in self.prefixSet:
-            self.assertTrue(prefix in self.testDict.prefixSet)
+        self.assertCountEqual(self.prefixSet, self.testDict.prefixSet)
 
     def testIsWordTrue(self):
         for word in self.wordList:
