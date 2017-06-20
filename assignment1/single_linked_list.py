@@ -8,11 +8,15 @@ class SingleLinkedList(object):
     """A single linked list class.
        
        Attribute: 
-           head: the head node of the list. 
+           head: the head node of the list. Initialized to None
+                 if the parameter is not provided. 
+           tail: the tail node of the list. Initialized to the 
+                 value of head. 
     """
 
     def __init__(self, head=None):
         self.head = head
+        self.tail = head
         self.size = 0
 
     def append(self, data):
@@ -24,11 +28,10 @@ class SingleLinkedList(object):
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
+            self.tail = new_node
         else:
-            curr = self.head
-            while curr.next != None:
-                curr = curr.next
-            curr.next = new_node
+            self.tail.next = new_node
+            self.tail = new_node
         self.size += 1
 
     def remove(self, data):
@@ -48,6 +51,8 @@ class SingleLinkedList(object):
                     self.head = curr.next
                 else:
                     prev.next = curr.next
+                if curr == self.tail:
+                    self.tail = prev
                 return curr
             else: 
                 prev = curr
