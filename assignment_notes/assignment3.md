@@ -8,7 +8,7 @@ Assignment3: Find all words in a dictionary
 - `xrange` vs `range` for **python2**:
     * Time: `xrange` is slightly slower
     * Space: `xrange` uses A LOT LESS space!!!
-    (`range` in python3 behaves like `xrange` in python2 QAQ)
+    * (`range` in python3 behaves like `xrange` in python2 QAQ)
 
 ### Important stuffs to think about 
 - marking *visited* nodes correctly
