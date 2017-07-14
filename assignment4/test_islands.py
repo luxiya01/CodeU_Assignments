@@ -3,24 +3,74 @@
 # Author: Li Ling
 # Last modified: 2017-06-25
 
+import copy
+import island_count
 import unittest
-import islandCount
 
 class TestIslandCount(unittest.TestCase):
-    def setUp(self):
-        self.row = 4
-        self.col = 4
-        self.landscape = [[False for x in range(self.col)] for y in range(self.row)]
-        self.landscape[0][1] = True
-        self.landscape[0][3] = True
-        self.landscape[1][0] = True
-        self.landscape[1][1] = True
-        self.landscape[2][2] = True
-        self.landscape[3][2] = True
-        self.islandCounter = islandCount.IslandCounter(self.row, self.col, self.landscape)
+    def test_horizontal_count(self):
+        landscape = [[1, 0, 1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        counter = island_count.IslandCounter(row, col, landscape)
+        self.assertEqual(2, counter.count_islands())
 
-    def testIslandCount(self):
-        self.assertEqual(3, self.islandCounter.count_islands())
+    def test_vertical_count(self):
+        landscape = [[1], 
+                     [0], 
+                     [1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        counter = island_count.IslandCounter(row, col, landscape)
+        self.assertEqual(2, counter.count_islands())
+        
+    def test_diagonal_count(self):
+        landscape = [[1, 0], 
+                     [0, 1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        counter = island_count.IslandCounter(row, col, landscape)
+        self.assertEqual(2, counter.count_islands())
+
+    def test_basic_flood_fill_horizontal(self):
+        landscape = [[1, 1, 0, 1, 1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        counter = island_count.IslandCounter(row, col, landscape)
+        self.assertEqual(2, counter.count_islands())
+
+    def test_basic_flood_fill_vertical(self):
+        landscape = [[1], 
+                     [1], 
+                     [0], 
+                     [1], 
+                     [1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        counter = island_count.IslandCounter(row, col, landscape)
+        self.assertEqual(2, counter.count_islands())
+
+    def test_tricky(self):
+        landscape = [[1, 0, 1, 1, 1],
+                     [1, 1, 1, 0, 1],
+                     [0, 0, 0, 0, 1],
+                     [1, 1, 1, 1, 1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        counter = island_count.IslandCounter(row, col, landscape)
+        self.assertEqual(1, counter.count_islands())
+
+    def test_original_landscape_unmodified(self):
+        landscape = [[1, 0, 1, 1, 1],
+                     [1, 1, 1, 0, 1],
+                     [0, 0, 0, 0, 1],
+                     [1, 1, 1, 1, 1]]
+        row = len(landscape)
+        col = len(landscape[0])
+        unmodified_landscape = copy.deepcopy(landscape)
+        island_count.IslandCounter(row, col, landscape)
+        for mod_row, unmod_row in zip(landscape, unmodified_landscape):
+            self.assertListEqual(mod_row, unmod_row)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
