@@ -34,7 +34,6 @@ def rearrange(current_permutation, final_permutation):
         if desired_car != current_permutation[pos] and desired_car != 0:
             movements_one_car = rearrange_one_car(car_to_pos, current_permutation, desired_car, pos)
             movements.extend(movements_one_car)
-    print(current_permutation)
     return movements
 
 def rearrange_one_car(car_to_pos, current_permutation, car, pos):
